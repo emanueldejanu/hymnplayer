@@ -24,12 +24,7 @@ namespace HymnPlayer
 
         private void UpdateText()
         {
-            lblText.Font = CalculateFontSize(verses[currentVerse]);
-            lblText.AutoSize = false;
-            lblText.Top = 0;
-            lblText.Left = 0;
-            lblText.Width = Width;
-            lblText.Height = Height;
+            lblText.Text = verses[currentVerse];
         }
 
         private Font CalculateFontSize(string text)
@@ -76,7 +71,20 @@ namespace HymnPlayer
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            UpdateText();
+            Font currentFont = null;
+            foreach (var verse in verses)
+            {
+                var calculatedFont = CalculateFontSize(verse);
+                if (currentFont == null || calculatedFont.Size < currentFont.Size)
+                    currentFont = calculatedFont;
+            }
+            lblText.AutoSize = false;
+            lblText.Text = verses[currentVerse];
+            lblText.Font = currentFont ?? Font;
+            lblText.Top = 0;
+            lblText.Left = 0;
+            lblText.Width = Width;
+            lblText.Height = Height;
         }
     }
 }
