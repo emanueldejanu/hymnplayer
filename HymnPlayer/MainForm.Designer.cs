@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.numStartHymn = new System.Windows.Forms.NumericUpDown();
@@ -385,6 +386,7 @@
             // 
             // notifyIcon
             // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "notifyIcon";
             this.notifyIcon.Visible = true;
             // 
@@ -396,6 +398,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.mainMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenu;
             this.MaximizeBox = false;
             this.Name = "MainForm";

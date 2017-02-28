@@ -16,8 +16,8 @@ namespace HymnPlayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainForm mainForm;
-            try
+            Form mainForm = new PlayerForm();
+            /*try
             {
                 mainForm = new MainForm();
             }
@@ -27,7 +27,7 @@ namespace HymnPlayer
                     throw;
                 MessageBox.Show(Resources.PowerPointNotFound);
                 return;
-            }
+            }*/
 
             Application.Run(mainForm);
         }
