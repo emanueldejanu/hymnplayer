@@ -78,49 +78,5 @@ namespace HymnPlayer
             base.OnShown(e);
             UpdateText();
         }
-
-        /*protected override void OnPaintBackground(PaintEventArgs e)
-        {
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            var text = "Eu sunt cel mai mare si mai bun din lume\nDar și eu sunt bun";
-
-            var g = e.Graphics;
-            g.FillRectangle(Brushes.Black, 0, 0, Width, Height);
-            Font font = GetAdjustedFont(g, text, Font, Width - 20, 200, 10, true);
-            SizeF textSize = g.MeasureString(text, font);
-            g.DrawString(text, font, Brushes.White, (float)Width / 2 - textSize.Width / 2, (float)Height / 2 - textSize.Height / 2);
-        }
-
-        public Font GetAdjustedFont(Graphics graphicRef, string graphicString, Font originalFont, int containerWidth, int maxFontSize, int minFontSize, bool smallestOnFail)
-        {
-            // We utilize MeasureString which we get via a control instance           
-            for (int adjustedSize = maxFontSize; adjustedSize >= minFontSize; adjustedSize--)
-            {
-                Font testFont = new Font(originalFont.Name, adjustedSize, originalFont.Style);
-
-                // Test the string with the new size
-                SizeF adjustedSizeNew = graphicRef.MeasureString(graphicString, testFont);
-
-                if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
-                {
-                    // Good font, return it
-                    return testFont;
-                }
-            }
-
-            // If you get here there was no fontsize that worked
-            // return MinimumSize or Original?
-            if (smallestOnFail)
-            {
-                return new Font(originalFont.Name, minFontSize, originalFont.Style);
-            }
-            else
-            {
-                return originalFont;
-            }
-        }*/
     }
 }
