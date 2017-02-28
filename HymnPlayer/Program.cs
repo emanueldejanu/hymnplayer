@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using HymnPlayer.Properties;
 
 namespace HymnPlayer
 {
@@ -16,7 +15,21 @@ namespace HymnPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            MainForm mainForm;
+            try
+            {
+                mainForm = new MainForm();
+            }
+            catch (FileNotFoundException exception)
+            {
+                if (exception.Message != "POWERPOINT")
+                    throw;
+                MessageBox.Show(Resources.PowerPointNotFound);
+                return;
+            }
+
+            Application.Run(mainForm);
         }
     }
 }
