@@ -17,6 +17,7 @@ namespace HymnPlayer
         public MainForm()
         {
             InitializeComponent();
+            mnuKeepWindowOnTop.Checked = TopMost;
             currentNumericHymnControl = numStartHymn;
             Rectangle screenArea = Screen.PrimaryScreen.WorkingArea;
             Location = new Point(screenArea.Width - Width - 10, screenArea.Bottom - Height - 10);
@@ -96,7 +97,19 @@ namespace HymnPlayer
         private void NumericControlActivated(object sender, EventArgs e)
         {
             currentNumericHymnControl = (NumericUpDown)sender;
+            numStartHymn.BackColor = numEndHymn.BackColor = SystemColors.Window;
+            currentNumericHymnControl.BackColor = SystemColors.Info;
             currentNumericHymnControl.Select(0, currentNumericHymnControl.Text.Length);
+        }
+
+        private void mnuKeepWindowOnTop_Click(object sender, EventArgs e)
+        {
+            TopMost = mnuKeepWindowOnTop.Checked;
+        }
+
+        private void mnuExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
