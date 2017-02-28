@@ -41,7 +41,10 @@ namespace HymnPlayer
             int number = int.Parse(keyPadButton.Text);
             try
             {
-                currentNumericHymnControl.Value = currentNumericHymnControl.Value * 10 + number;
+                if (currentNumericHymnControl.Text.Length == 0)
+                    currentNumericHymnControl.Value = number;
+                else
+                    currentNumericHymnControl.Value = currentNumericHymnControl.Value * 10 + number;
             }
             catch (ArgumentOutOfRangeException)
             {
