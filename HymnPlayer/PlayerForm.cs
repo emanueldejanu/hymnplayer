@@ -55,6 +55,7 @@ namespace HymnPlayer
                 if (currentVerse > 0)
                 {
                     currentVerse--;
+                    lblText.BackgroundImage = null;
                     UpdateText();
                 }
             }
@@ -64,6 +65,13 @@ namespace HymnPlayer
                 {
                     currentVerse++;
                     UpdateText();
+                }
+                else if (currentVerse + 1 == verses.Length)
+                {
+                    currentVerse++;
+                    lblText.Text = "";
+                    lblText.BackgroundImage = Image.FromFile(@"C:\Users\Public\Pictures\Sample Pictures\Lighthouse.jpg");
+                    lblText.BackgroundImageLayout = ImageLayout.Center;
                 }
             }
         }
