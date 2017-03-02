@@ -95,6 +95,9 @@
     <None Include="Resources\Hymn.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Hyms.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Treetog-Junior-Document-audio.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
