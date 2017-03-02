@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using HymnPlayer.Models;
 
 namespace HymnPlayer
 {
@@ -8,18 +9,24 @@ namespace HymnPlayer
     {
         private int currentVerse = 0;
 
-        private string[] verses = new[]
-        {
-            "Imnul 1\nPlecaţi-vă lui Dumnezeu!",
-            "1. Plecaţi-vă lui Dumnezeu,   \nPopoare-oriunde vă găsiţi;  \nEl ni L-a dat pe Fiul Său,\nCunoaşteţi-L şi Îi serviţi!",
-            "2. Veniţi ’nainte-I mulţumind!\nEl ne-a făcut, nu singuri, noi\nŞi, când umblam noi rătăcind,\nLa turma Lui ne-aduse-apoi.",
-            "3. Suntem popor sub mâna Lui,\nCu trup şi suflet siguri stăm,\nDacă nu Lui, atuncea cui,\nCântarea noastră să ’nălţăm?",
-            "4. Cât lumea e cuprinsul Său,\nStatornic e-n cuvânt şi har!\nEl este-al nostru Dumnezeu\nIubire fără de hotar!"
-        };
+        private string[] verses;
 
         public PlayerForm()
         {
             InitializeComponent();
+            verses = new[] {"No verse"};
+        }
+
+        public PlayerForm(Hymn hymn)
+            : this()
+        {
+            verses = new string[hymn.Verses.Count + 1];
+            verses[0] = "Imnul " + hymn.Number + "\n" + hymn.Title;
+            int index = 1;
+            foreach (var verse in hymn.Verses)
+            {
+                verses[index++] = verse.Text;
+            }
         }
 
         private void UpdateText()
@@ -79,6 +86,7 @@ namespace HymnPlayer
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
+            lblText.Visible = false;
             Font currentFont = null;
             foreach (var verse in verses)
             {
@@ -93,6 +101,7 @@ namespace HymnPlayer
             lblText.Left = 0;
             lblText.Width = Width;
             lblText.Height = Height;
+            lblText.Visible = true;
         }
     }
 }

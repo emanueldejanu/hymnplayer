@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using HymnPlayer.Models;
 using HymnPlayer.Properties;
 using Microsoft.Win32;
 
@@ -13,15 +15,26 @@ namespace HymnPlayer
         private NumericUpDown currentNumericHymnControl;
         private readonly string powerPointExePath;
         string basePath = @"d:\Kit\920 Imnuri Crestine";
+        private readonly Dictionary<int, Hymn> hymns = new Dictionary<int, Hymn>(); 
 
         public MainForm()
         {
             InitializeComponent();
+            LoadHymns();
             mnuKeepWindowOnTop.Checked = TopMost;
             currentNumericHymnControl = numStartHymn;
             Rectangle screenArea = Screen.PrimaryScreen.WorkingArea;
             Location = new Point(screenArea.Width - Width - 10, screenArea.Bottom - Height - 10);
             powerPointExePath = GetPowerPointExePath();
+        }
+
+        private void LoadHymns()
+        {
+            HymnLoader loader = new HymnLoader();
+            foreach (Hymn hymn in loader.Load("Hymns.xml"))
+            {
+                hymns.Add(hymn.Number, hymn);   
+            }
         }
 
         private string GetPowerPointExePath()
@@ -58,7 +71,12 @@ namespace HymnPlayer
             int number = (int)numericControl.Value;
             if (number <= 0)
                 MessageBox.Show(this, Resources.NoHymnSelected);
-            int category = number / 100 * 100;
+            Hide();
+            using (PlayerForm player = new PlayerForm(hymns[number]))
+                player.ShowDialog();
+            Show();
+
+            /*int category = number / 100 * 100;
             string path = Path.Combine(basePath, string.Format("{0:D3}-{1:D3}", category == 0 ? 1 : category, category + 99));
             string filePath = FindHymn(path, number);
             if (!string.IsNullOrEmpty(filePath))
@@ -72,7 +90,7 @@ namespace HymnPlayer
                     }
                 };
                 powerPoint.Start();
-            }
+            }*/
 
         }
 

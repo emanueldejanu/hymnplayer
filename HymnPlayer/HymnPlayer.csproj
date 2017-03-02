@@ -48,12 +48,15 @@
     <Compile Include="CustomLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HymnLoader.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Hymn.cs" />
+    <Compile Include="Models\Verse.cs" />
     <Compile Include="PlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +98,7 @@
     <None Include="Resources\Hymn.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Hyms.xml">
+    <Content Include="Hymns.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Treetog-Junior-Document-audio.ico" />
